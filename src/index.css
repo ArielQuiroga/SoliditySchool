@@ -1,0 +1,41 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-image: url(images/peakpx.jpg)  
+}
+
+.myboton {
+  min-height:5vw ;
+  max-height:15vw ;
+  min-width: 25vw;
+  max-width: 35vw;
+  /* padding: 10px;  */
+  border-radius: 35px;
+  box-shadow: 0px 10px 8px rgba(0, 0, 0, 0.2),inset 0px -4px 8px rgba(0, 0, 0, 0.2);
+  background-color: #ff0084;
+  animation: animacion-color 2s ease infinite alternate;
+}
+
+.buttontext {
+  font-size: 50px;
+}
+
+@keyframes animacion-color {
+  0% {
+    background-color: #ff0084; 
+  }
+  100% {
+    background-color: blue; 
+  }
+}
+
+.myboton:active {
+  transform: scale(0.95); 
+}
+
+
+
+
+
