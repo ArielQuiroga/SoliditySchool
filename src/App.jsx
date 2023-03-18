@@ -1,15 +1,14 @@
-import React, { useState } from 'react';
-import './App.css';
-import  Button from'./Components/Button/Button.js';
-import { ethers } from 'ethers/lib/ethers';
-
+import React from 'react';
+import './index.css';
+import MyComponent from './MyComponent';
 
 function App() {
   return (
     <div className="App">
-      <Button />
+      <MyComponent />
     </div>
   );
 }
 
 export default App;
+
