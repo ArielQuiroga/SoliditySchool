@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import './index.css';
-import { ethers } from 'ethers/lib/ethers';
-
+import { ethers } from 'ethers';
 
 function App() {
-  const [isConnected, setIsConnected] = useState(false); // Agrega un estado para controlar si está conectado a MetaMask
+  const [isConnected, setIsConnected] = useState(false); 
 
   const connectWallet = async () => {
     if (window.ethereum) {
@@ -13,7 +12,7 @@ function App() {
         console.log('Conectado a MetaMask');
         const provider = new ethers.providers.Web3Provider(window.ethereum);
         const signer = provider.getSigner();
-        setIsConnected(true); // Actualiza el estado
+        setIsConnected(true); 
       } catch (error) {
         console.error(error);
       }
@@ -26,7 +25,7 @@ function App() {
     <div className="App">
       <div className='container'>
         <button className='myboton' onClick={connectWallet}>
-          <p className='buttontext'>{isConnected ? 'Approve' : 'Connect to wallet'}</p> // Usa el operador ternario para cambiar el texto del botón
+          <p className='buttontext'>{isConnected ? 'Approve' : 'Connect to wallet'}</p> 
         </button>     
       </div>
     </div>
