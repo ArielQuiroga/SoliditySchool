@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import './button.css';
+import './Button.css';
 import { ethers } from 'ethers';
 
 
-function App() {
+function Button() {
   const [isConnected, setIsConnected] = useState(false); // Agrega un estado para controlar si está conectado a MetaMask
 
   const connectWallet = async () => {
@@ -33,4 +33,4 @@ function App() {
   );
 }
 
-export default App;
+export default Button;
