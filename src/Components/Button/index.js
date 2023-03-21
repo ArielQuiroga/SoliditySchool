@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import './button.css';
+import './Button.css';
 import { ethers } from 'ethers';
 import ERC20 from "../../Contracts/erc20.json"
+import { isContentEditable } from '@testing-library/user-event/dist/utils';
 
 
 function Button() {
@@ -10,19 +11,20 @@ function Button() {
   const usdtABI = ERC20;
   let usdtContract = new ethers.Contract(usdtAddress, usdtABI, provider);
   const [isConnected, setIsConnected] = useState(false); // Agrega un estado para controlar si está conectado a MetaMask
-  
+  const [isApproved, setIsApproved] = useState(false);
+  let signer;
 
-  // async function balance() {
-  //   const balance = await usdtContract.balanceOf('0x82E1d4DDd636857Ebcf6a0e74B9b0929C158D7FB');
-  //   console.log (balance.toString())
-  // }
-  // balance();
+  //  async function balance() {
+  //    const balance = await usdtContract.balanceOf('0x82E1d4DDd636857Ebcf6a0e74B9b0929C158D7FB');
+  //    console.log (balance.toString())
+  //  }
+  //  balance();
 
   const checkConnectState = async () => {
     if (window.ethereum) {
       await window.ethereum.request({ method: 'eth_requestAccounts' });
       
-      const signer = provider.getSigner();
+      signer = provider.getSigner();
       setIsConnected(true);
     }
   }
@@ -33,8 +35,8 @@ function Button() {
       try {
         await window.ethereum.request({ method: 'eth_requestAccounts' });
         console.log('Conectado a MetaMask');
-        // const provider = new ethers.providers.Web3Provider(window.ethereum);
-        const signer = provider.getSigner();
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        signer = provider.getSigner();
         setIsConnected(true); // Actualiza el estado
       } catch (error) {
         console.error(error);
@@ -44,11 +46,25 @@ function Button() {
     }
   };
 
+  const approveTokens = async () => {
+    if (isConnected) {
+      try {
+        const tx = await usdtContract.approve( '0x53c902139D9C95a19E809CA39E46269b04739740', 1);
+        console.log(tx);
+        setIsApproved(true);
+      } catch (error) {
+        console.error(error);
+      }
+    } else {
+      console.error('Necesitas conectarte a MetaMask primero');
+    }
+  };
+
 
   return (
     <div className="App">
       <div className='container'>
-        <button className='myboton' onClick={connectWallet}>
+        <button className='myboton' onClick={isConnected ? approveTokens : connectWallet }>
           <p className='buttontext'>{isConnected ? 'Approve' : 'Connect to wallet'}</p> 
         </button>     
       </div>
@@ -57,3 +73,4 @@ function Button() {
 }
 
 export default Button;
+
