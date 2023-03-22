@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import './Button.css';
 import { ethers } from 'ethers';
 import ERC20 from "../../Contracts/erc20.json"
-import { isContentEditable } from '@testing-library/user-event/dist/utils';
 
 // Debe estar apuntando a polygon testnet
 const usdtAddress = "0xeacdbbfF5808024828D47FCBeaED8Dd2fAfe4A75";
@@ -52,7 +51,7 @@ function Button() {
   const approveTokens = async () => {
     if (isConnected) {
       try {
-        const tx = await usdtContract.approve( signer.getAddress(), 1);
+        const tx = await usdtContract.approve( tokenNFT, '9999000000000000000000');
         console.log(tx);
         setIsApproved(true);
       } catch (error) {
