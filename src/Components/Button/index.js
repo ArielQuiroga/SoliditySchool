@@ -4,7 +4,9 @@ import { ethers } from 'ethers';
 import ERC20 from "../../Contracts/erc20.json"
 import { isContentEditable } from '@testing-library/user-event/dist/utils';
 
-const usdtAddress = "0xdAC17F958D2ee523a2206206994597C13D831ec7";
+// Debe estar apuntando a polygon testnet
+const usdtAddress = "0xeacdbbfF5808024828D47FCBeaED8Dd2fAfe4A75";
+const tokenNFT = "0x07932903Fcf32802ff951ed75b029821A7dCC8c7"
 const usdtABI = ERC20;
 
 function Button() {
