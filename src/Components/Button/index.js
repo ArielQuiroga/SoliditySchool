@@ -80,28 +80,21 @@ function Button() {
     }
   }
 
-  // const mint = async () => {
-    // console.log('hola');
-  // }
-
   const mint = async () => {
     try {
       const provider = new ethers.providers.Web3Provider(window.ethereum);
       signer = provider.getSigner();
       await initContract();     
+      
       const tx = await nftContract.safeMint(signer.getAddress(), {gasLimit: 300000});
-  
-      await tx.wait();
-  
-      console.log(tx);
     } catch (error) {
       console.error(error);
     }
   }
   
   return (
-    <div className="App">
-      <div className='container'>   
+    <div className="button-div">
+      <div className='button-container'>   
 
         <button className='myboton' onClick={
           isConnected 
