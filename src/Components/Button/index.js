@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import './Button.css';
+import './button.css';
 import { ethers } from 'ethers';
 import ERC20 from "../../Contracts/erc20.json"
 import ERC721 from "../../Contracts/erc721.json"
