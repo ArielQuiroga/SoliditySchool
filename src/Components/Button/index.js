@@ -101,7 +101,7 @@ function Button() {
           ? (isApproved ? mint : approveTokens) 
           : connectWallet 
         }>
-          <p className='buttontext'>{isConnected ? (isApproved ? 'Mint' : approveText) : 'Connect to wallet'}</p> 
+          <p className='buttontext'>{isConnected ? (isApproved ? 'MINT' : approveText) : 'CONNECT'}</p> 
         </button>
 
       </div>
