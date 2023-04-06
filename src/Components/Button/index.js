@@ -5,8 +5,8 @@ import ERC20 from "../../Contracts/erc20.json"
 import ERC721 from "../../Contracts/erc721.json"
 
 // Debe estar apuntando a polygon testnet
-const usdtAddress = "0xeacdbbfF5808024828D47FCBeaED8Dd2fAfe4A75";
-const nftAddress = "0x07932903Fcf32802ff951ed75b029821A7dCC8c7"
+const usdtAddress = "0xe546F483555948084D8Cd3A53e5A53FfD130Be52";
+const nftAddress = "0xaf2665415aee6ab41370003ca51c3fda5494d585"
 const usdtABI = ERC20;
 const nftABI = ERC721;
 
@@ -73,6 +73,7 @@ function Button() {
 
   const allowanceTokens = async () => {
     const allowance = await usdtContract.allowance(signer.getAddress(), nftAddress );
+    console.log("Allowance: ", ethers.utils.formatEther(allowance.toString()))
     if(allowance > ethers.utils.formatEther(1)){
       setIsApproved(true);
     }else{
@@ -86,7 +87,7 @@ function Button() {
       signer = provider.getSigner();
       await initContract();     
       
-      const tx = await nftContract.safeMint(signer.getAddress(), {gasLimit: 300000});
+      const tx = await nftContract.safeMint(signer.getAddress(),"Hola", {gasLimit: 300000});
     } catch (error) {
       console.error(error);
     }
