@@ -46,6 +46,6 @@
 }
 
 .myboton[disabled] {
-  background-color: #282727;
+  background-color: #777777;
   transition: none;
 }
