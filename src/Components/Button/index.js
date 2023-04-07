@@ -17,6 +17,7 @@ function Button() {
   const [approveText, setApproveText] = useState('Approve');
   const [isConnected, setIsConnected] = useState(false); // Agrega un estado para controlar si está conectado a MetaMask
   const [isApproved, setIsApproved] = useState('');
+  const [message, setMessage] = useState('');
 
   const initContract = async () => {
     usdtContract = new ethers.Contract(usdtAddress, usdtABI, signer);
@@ -86,25 +87,35 @@ function Button() {
       const provider = new ethers.providers.Web3Provider(window.ethereum);
       signer = provider.getSigner();
       await initContract();     
-      
-      const tx = await nftContract.safeMint(signer.getAddress(),"Hola", {gasLimit: 300000});
+      console.log(message);
+      const tx = await nftContract.safeMint(signer.getAddress(),message, {gasLimit: 300000});
     } catch (error) {
       console.error(error);
     }
   }
+
+  const handleMessage = (event) => {
+    setMessage(event.target.value);
+    console.log(message);
+  };
   
   return (
     <div className="button-div">
       <div className='button-container'>   
-
-        <button className='myboton' onClick={
-          isConnected 
-          ? (isApproved ? mint : approveTokens) 
-          : connectWallet 
-        }>
-          <p className='buttontext'>{isConnected ? (isApproved ? 'MINT' : approveText) : 'CONNECT'}</p> 
-        </button>
-
+      {isConnected 
+        ? (isApproved 
+            ? <form onSubmit={mint} className='form-button'>
+                <input className='registroInputs' type="text" id="Message" name="Message" value={message} onChange={handleMessage} placeholder='Mensaje aqui' />
+                {message === "" ? (
+                  <button className='myboton' type="button" disabled> MINT </button>
+                 ) : (
+                  <button className='myboton' type="button" onClick={mint}> MINT </button>
+                )}
+              </form>
+            : <button  className='myboton'  onClick={approveTokens}> {approveText} </button>
+          )
+        : <button className='myboton' onClick={connectWallet}>CONNECT</button>
+      }
       </div>
     </div>
   );
