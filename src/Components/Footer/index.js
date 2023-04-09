@@ -13,7 +13,7 @@ function Footer() {
   let usdtContract;
   const [signerAddress, setSignerAddress] = useState('');
   const [faucetContract, setFaucetContract] = useState('');
-  const [tokenBalance, setTokenBalance] = useState('');
+  const [tokenBalance, setTokenBalance] = useState('0.0');
   // const [usdtContract, setUsdtContract] = useState('')
 
   useEffect(() => {

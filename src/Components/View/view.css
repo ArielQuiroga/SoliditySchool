@@ -1,0 +1,21 @@
+.View{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 50vh;
+}   
+.View div{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin: 2vh;
+}
+
+.View h3{
+    margin: 0;
+}
+
+.View button{
+    margin: 0;
+}
