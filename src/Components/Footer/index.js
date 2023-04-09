@@ -21,15 +21,14 @@ function Footer() {
   }, []);
 
   const createSigner = async () => {
-    if (window.ethereum ) {
+    if (window.ethereum) {
       await window.ethereum.request({ method: 'eth_requestAccounts' });
-        if (window.ethereum.selectedAddress) {
-          await initContract();
-          setSignerAddress(signer.getAddress());
-
-          getTokenBalance()
-        }
+      if (window.ethereum.selectedAddress) {
+        await initContract();
+        setSignerAddress(await signer.getAddress());
+        await getTokenBalance();
       }
+    }
   };
 
   const initContract = async () => {
@@ -43,7 +42,7 @@ function Footer() {
   const getTokenBalance = async () => {
     initContract();
     const balance = await usdtContract.balanceOf(signer.getAddress());
-    console.log(ethers.utils.formatEther(balance.toString()))
+    console.log('Token balance:',ethers.utils.formatEther(balance.toString()))
     setTokenBalance(ethers.utils.formatEther(balance.toString()))
   
   }
