@@ -1,0 +1,26 @@
+.footer {
+    position: absolute;
+    width: 100%;
+    display: flex;
+    text-align: center;
+    justify-content: space-between;
+    bottom: 0;
+    left: 0;
+    /* margin: 2%;  */
+    
+}
+
+.by{
+    display: flex;
+    text-align: center;
+    margin-left: 8px;
+}
+
+.footer a {
+    text-decoration: none;
+    color: white;
+}
+
+.getTokens {
+    margin-right:  8px;
+}

@@ -1,0 +1,36 @@
+.slide-text-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  top: 25px;
+  width: 80%;
+  height: 40px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.235);
+  background-image: linear-gradient(to bottom, transparent 0%, rgba(255, 255, 255, 0.15) 100%);
+  overflow: hidden;
+}
+
+.slide-text {
+  white-space: nowrap;
+  animation: slide 20s linear infinite;
+}
+
+.slide-text span {
+  display: inline-block;
+  width: 10px; /* ajusta este ancho según tu preferencia */
+  text-align: center;
+  opacity: 0.5;
+  margin: 0 5px;
+}
+
+
+@keyframes slide {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
