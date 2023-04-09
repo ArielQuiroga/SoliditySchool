@@ -93,6 +93,9 @@ function Button() {
       await initContract();     
       // console.log(message);
       const tx = await nftContract.safeMint(signer.getAddress(),message, {gasLimit: 300000});
+      await tx.wait().then(() =>{
+        getNftBalance();
+      })
     } catch (error) {
       console.error(error);
     }

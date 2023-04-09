@@ -13,7 +13,8 @@ function View() {
   let nftContract;
   const [signerAddress, setSignerAddress] = useState('');
   const [messageSigner, setMessageSigner] = useState('');
-  const [messageID, setMessageID] = useState('');
+  const [messageID, setMessageID] = useState('HOlA');
+  const [id, setId] = useState('');
 
   useEffect(() => {
     createSigner();
@@ -35,6 +36,7 @@ function View() {
   const initContract = async () => {
     nftContract = new ethers.Contract(nftAddress, nftABI, signer);    
   }
+
   const getMessageSigner = async () => {
     try {
       const provider = new ethers.providers.Web3Provider(window.ethereum);
@@ -49,21 +51,34 @@ function View() {
       console.error(error);
     }
   }
+  const getMessageID = async () => {
+    try {
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      signer = provider.getSigner();
+      await initContract();  
+
+      const message = await nftContract.messages(id.toString());
+      setMessageID(message.toString());
+      console.log("Message: ", message);
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
   const handleMessage = (event) => {
-    // console.log(message);
+    setId(event.target.value);
   };
 
   return (
     <div className="View">
         <div>
           <h3> {signerAddress}</h3>
-          <p>Message: {messageSigner}</p>
+          <p className='label-view'>You Message: {messageSigner}</p>
         </div>
-        <div>
-            <input className='getId' type="text" id="Message" name="Message" value={messageID} onChange={handleMessage} placeholder='Mensaje aqui' />
-            <button onClick={getMessageSigner}>Get message</button>
-            <label>Mensaje pedido</label>
+        <div className='div-view-get-section'>
+            <input className='input-view' type="text" id="Message" name="Message" value={id} onChange={handleMessage} placeholder='Mensaje aqui' />
+            <button className='button-view' onClick={getMessageID}>Get message</button>
+            <label className='label-view' >{messageID}</label>
         </div>
     </div>
   );
