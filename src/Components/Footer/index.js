@@ -11,6 +11,7 @@ const usdtAddress = "0xe546F483555948084D8Cd3A53e5A53FfD130Be52";
 function Footer() {
   let signer;
   let usdtContract;
+  const [chainId, setChainID] = useState('');
   const [signerAddress, setSignerAddress] = useState('');
   const [faucetContract, setFaucetContract] = useState('');
   const [tokenBalance, setTokenBalance] = useState('0.0');
@@ -18,15 +19,24 @@ function Footer() {
 
   useEffect(() => {
     createSigner();
+    window.ethereum.on('chainChanged', handleChainChanged); // Agrega el event listener al cargar el componente
+    
   }, []);
 
   const createSigner = async () => {
     if (window.ethereum) {
       await window.ethereum.request({ method: 'eth_requestAccounts' });
       if (window.ethereum.selectedAddress) {
-        await initContract();
-        setSignerAddress(await signer.getAddress());
-        await getTokenBalance();
+        const chainId = await window.ethereum.request({ method: 'eth_chainId' });
+        console.log(chainId.toString());
+        if (chainId === '0x13881') { // Polygon Mumbai Testnet chain ID
+          await initContract();
+          setSignerAddress(await signer.getAddress());
+          await getTokenBalance();
+          setChainID(chainId);
+        } else {
+          alert('Por favor, cambia a la red de Polygon Mumbai Testnet');
+        } 
       }
     }
   };
@@ -55,6 +65,16 @@ function Footer() {
     })
   }
 
+  useEffect(() => {
+    if(chainId && chainId !== '0x13881') { // Verifica si el chainId es diferente a Mumbai Testnet
+      console.log(`Cambió de red: ${chainId}`);
+      alert('Debes estar en la red de Mumbai Testnet de Polygon');
+    }
+  }, [chainId]);
+
+  const handleChainChanged = (chainId) => {
+    setChainID(chainId);
+  }
 
   return (
     <div className="footer">
@@ -62,6 +82,10 @@ function Footer() {
         <p>by <a href="https://twitter.com/AridevOK" target="_blank" rel="noopener noreferrer">@Aridev</a></p>
         <p> &nbsp; & &nbsp;<a href="https://twitter.com/LeanLabiano" target="_blank" rel="noopener noreferrer">@LeanLabiano</a> </p> 
       </div>
+      {chainId != '0x13881'
+        ? <p className='Alert-badred'> Debes estar en la red de Polygon</p>
+        : ""
+      }
 
       <p className='getTokens' >
         {tokenBalance  === '0.0'

@@ -18,6 +18,12 @@ function View() {
 
   useEffect(() => {
     createSigner();
+    if (window.ethereum ) {
+      window.ethereum.on('accountsChanged', (accounts) => {
+        console.log('cambio de wallet');
+        window.location.reload();
+      });
+    }
   }, []);
 
   const createSigner = async () => {
@@ -45,7 +51,7 @@ function View() {
 
       const tokenId = await nftContract.tokensOfOwner(signer.getAddress());
       const message = await nftContract.messages(tokenId.toString());
-      console.log("Message: ", message);
+      // console.log("Message: ", message);
       setMessageSigner(message);
     } catch (error) {
       console.error(error);
@@ -59,7 +65,7 @@ function View() {
 
       const message = await nftContract.messages(id.toString());
       setMessageID(message.toString());
-      console.log("Message: ", message);
+      // console.log("Message: ", message);
     } catch (error) {
       console.error(error);
     }

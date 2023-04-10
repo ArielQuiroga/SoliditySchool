@@ -6,8 +6,6 @@
     justify-content: space-between;
     bottom: 0;
     left: 0;
-    /* margin: 2%;  */
-    
 }
 
 .by{
@@ -23,4 +21,23 @@
 
 .getTokens {
     margin-right:  8px;
+}
+
+.Alert-badred {
+    font-size: 22px;
+    font-weight: 600;
+    color: black;
+    animation: colorLoop 5s infinite;
+}
+
+@keyframes colorLoop {
+    0% {
+      color: black;
+    }
+    50% {
+      color: white;
+    }
+    100% {
+      color: black;
+    }
 }
