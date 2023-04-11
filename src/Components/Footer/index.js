@@ -19,7 +19,11 @@ function Footer() {
 
   useEffect(() => {
     createSigner();
-    window.ethereum.on('chainChanged', handleChainChanged); // Agrega el event listener al cargar el componente
+    if(window.ethereum){
+      window.ethereum.on('chainChanged', handleChainChanged); // Agrega el event listener al cargar el componente
+    }else{
+      console.log("metamask no instalado");
+    }
     
   }, []);
 

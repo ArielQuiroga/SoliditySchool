@@ -18,6 +18,7 @@ function Button() {
   let nftContract;
   const [approveText, setApproveText] = useState('Approve');
   const [isConnected, setIsConnected] = useState(false); // Agrega un estado para controlar si está conectado a MetaMask
+  const [haveMetamask, setHaveMetamask] = useState('');
   const [isApproved, setIsApproved] = useState('');
   const [message, setMessage] = useState('');
   const [getBalance, setGetBalance] = useState('0');
@@ -46,6 +47,7 @@ function Button() {
         console.error(error);
       }
     } else {
+      setHaveMetamask(false);
       console.error('MetaMask no está instalado');
     }
   };
@@ -137,7 +139,13 @@ function Button() {
               )
             : <button  className='myboton'  onClick={approveTokens}> {approveText} </button>
           )
-        : <button className='myboton' onClick={connectWallet}>CONNECT</button>
+        : (haveMetamask
+          ?  <button  className='myboton'  onClick={approveTokens}> {approveText} </button>
+          :  <button 
+              className='myboton' 
+              onClick={() => window.open('https://metamask.io/', '_blank')}
+            > Install Metamask </button>
+        )
       }
       </div>
     </div>
