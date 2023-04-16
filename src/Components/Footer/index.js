@@ -33,7 +33,7 @@ function Footer() {
       if (window.ethereum.selectedAddress) {
         const chainId = await window.ethereum.request({ method: 'eth_chainId' });
         console.log(chainId.toString());
-        if (chainId === '0x13881') { // Polygon Mumbai Testnet chain ID
+        if (chainId === '0x89') { // Polygon MAINET chain ID
           await initContract();
           setSignerAddress(await signer.getAddress());
           await getTokenBalance();
@@ -70,9 +70,9 @@ function Footer() {
   }
 
   useEffect(() => {
-    if(chainId && chainId !== '0x13881') { // Verifica si el chainId es diferente a Mumbai Testnet
+    if(chainId && chainId !== '0x89') { // Verifica si el chainId es diferente a Mumbai Testnet
       console.log(`Cambió de red: ${chainId}`);
-      alert('Debes estar en la red de Mumbai Testnet de Polygon');
+      alert('Debes estar en la red de Polygon');
     }
   }, [chainId]);
 
@@ -86,7 +86,7 @@ function Footer() {
         <p>by <a href="https://twitter.com/AridevOK" target="_blank" rel="noopener noreferrer">@Aridev</a></p>
         <p> &nbsp; & &nbsp;<a href="https://twitter.com/LeanLabiano" target="_blank" rel="noopener noreferrer">@LeanLabiano</a> </p> 
       </div>
-      {chainId != '0x13881'
+      {chainId != '0x89'
         ? <p className='Alert-badred'> Debes estar en la red de Polygon</p>
         : ""
       }
