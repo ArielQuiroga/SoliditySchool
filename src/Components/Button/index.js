@@ -18,7 +18,7 @@ function Button() {
   let nftContract;
   const [approveText, setApproveText] = useState('Approve');
   const [isConnected, setIsConnected] = useState(false); // Agrega un estado para controlar si está conectado a MetaMask
-  const [haveMetamask, setHaveMetamask] = useState('');
+  const [haveMetamask, setHaveMetamask] = useState(true);
   const [isApproved, setIsApproved] = useState('');
   const [message, setMessage] = useState('');
   const [getBalance, setGetBalance] = useState('0');
@@ -140,7 +140,7 @@ function Button() {
             : <button  className='myboton'  onClick={approveTokens}> {approveText} </button>
           )
         : (haveMetamask
-          ?  <button  className='myboton'  onClick={approveTokens}> {approveText} </button>
+          ?  <button  className='myboton'  onClick={connectWallet}> Conect Wallet </button>
           :  <button 
               className='myboton' 
               onClick={() => window.open('https://metamask.io/', '_blank')}
