@@ -3,7 +3,7 @@ import ERC721 from "../../Contracts/erc721.json";
 import { ethers } from 'ethers';
 import './SlideText.css';
 
-const nftAddress = "0x68f9cda82c1108d936dba31e2b2a1e33a736a578"
+const nftAddress = "0xEf85A404cfE4eB75F6d82eA7bC67C934906bC19B"
 
 function SlideText() {
   let signer;

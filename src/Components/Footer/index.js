@@ -5,8 +5,8 @@ import ERC20 from "../../Contracts/erc20.json"
 
 import './Footer.css';
 
-const faucetAddress = "0xce5ab5E6a0Fb7f68Ce46F77e2cdA6Dcb4c6Ea127"
-const usdtAddress = "0xe546F483555948084D8Cd3A53e5A53FfD130Be52";
+const faucetAddress = "0x58F8613AF9B062FEb94839fc64570476099766D0"
+const usdtAddress = "0xa4eF9925feBFdAdE42e6f444B9fF414134eD2695";
 
 function Footer() {
   let signer;
@@ -39,7 +39,7 @@ function Footer() {
           await getTokenBalance();
           setChainID(chainId);
         } else {
-          alert('Por favor, cambia a la red de Polygon Mumbai Testnet');
+          alert('Por favor, cambia a la red de Polygon');
         } 
       }
     }

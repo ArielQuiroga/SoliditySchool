@@ -5,10 +5,9 @@ import View from '../View';
 import ERC20 from "../../Contracts/erc20.json"
 import ERC721 from "../../Contracts/erc721.json"
 
-// Debe estar apuntando a polygon testnet
-const usdtAddress = "0xe546F483555948084D8Cd3A53e5A53FfD130Be52";
-// const nftAddress-old = "0xaf2665415aee6ab41370003ca51c3fda5494d585"
-const nftAddress = "0x68f9cda82c1108d936dba31e2b2a1e33a736a578"
+// Debe estar apuntando a polygon mainet
+const usdtAddress = "0xa4eF9925feBFdAdE42e6f444B9fF414134eD2695";
+const nftAddress = "0xEf85A404cfE4eB75F6d82eA7bC67C934906bC19B"
 const usdtABI = ERC20;
 const nftABI = ERC721;
 

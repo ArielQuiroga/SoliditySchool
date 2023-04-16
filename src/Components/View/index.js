@@ -3,10 +3,8 @@ import ERC721 from "../../Contracts/erc721.json"
 import { ethers } from 'ethers';
 import './view.css';
 
-const nftAddress = "0x68f9cda82c1108d936dba31e2b2a1e33a736a578"
+const nftAddress = "0xEf85A404cfE4eB75F6d82eA7bC67C934906bC19B"
 const nftABI = ERC721;
-
-// const usdtAddress = "0xe546F483555948084D8Cd3A53e5A53FfD130Be52";
 
 function View() {
   let signer;
@@ -51,7 +49,6 @@ function View() {
 
       const tokenId = await nftContract.tokensOfOwner(signer.getAddress());
       const message = await nftContract.messages(tokenId.toString());
-      // console.log("Message: ", message);
       setMessageSigner(message);
     } catch (error) {
       console.error(error);
@@ -65,7 +62,6 @@ function View() {
 
       const message = await nftContract.messages(id.toString());
       setMessageID(message.toString());
-      // console.log("Message: ", message);
     } catch (error) {
       console.error(error);
     }
